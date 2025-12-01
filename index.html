@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ki Pão de Queijo — Site Oficial</title>
+  <meta name="description" content="Ki Pão de Queijo — Pães de queijo artesanais e salgados. Encomendas, cardápio e contato." />
+
+  <style>
+    /* ===========================
+       PALETA AZUL + AMARELO
+       =========================== */
+    :root {
+      --blue-primary: #1E3A8A;
+      --blue-light: #3B82F6;
+      --blue-bg: #E0F2FE;
+
+      --yellow-primary: #FACC15;
+      --yellow-dark: #CA8A04;
+      --yellow-bg: #FEF9C3;
+
+      --white: #FFFFFF;
+      --gray-dark: #1F2937;
+      --gray-muted: #6B7280;
+    }
+
+    /* ======= Base ======= */
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Inter, system-ui, Arial;
+      background: var(--blue-bg);
+      color: var(--gray-dark);
+    }
+
+    .page-pad {
+      padding-left: 15%;
+      padding-right: 15%;
+    }
+    @media (max-width:900px) {
+      .page-pad { padding-left: 4%; padding-right: 4%; }
+    }
+
+    /* ======= HEADER ======= */
+    header {
+      background: linear-gradient(90deg, rgba(30,58,138,0.15), rgba(59,130,246,0.1));
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(6px);
+      z-index: 20;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--blue-primary);
+    }
+    .logo .mark {
+      width: 48px;
+      height: 48px;
+      background: var(--yellow-primary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue-primary);
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    nav a {
+      color: var(--blue-primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    nav a:hover {
+      color: var(--yellow-dark);
+    }
+
+    /* ======= HERO ======= */
+    main { padding: 36px 0; }
+
+    .hero {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    @media (max-width:720px){
+      .hero { flex-direction: column; align-items: flex-start; }
+      .nav { height: 64px; }
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 2.3rem;
+      color: var(--blue-primary);
+    }
+    .hero p {
+      margin: 0;
+      color: var(--gray-muted);
+    }
+
+    /* ======= Botões ======= */
+    .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--yellow-primary);
+      color: var(--blue-primary);
+    }
+    .btn-primary:hover {
+      background: var(--yellow-dark);
+    }
+
+    .btn-ghost {
+      border: 2px solid var(--yellow-primary);
+      color: var(--yellow-dark);
+      background: transparent;
+    }
+
+    /* ======= CARDS ======= */
+    .card {
+      background: var(--white);
+      padding: 16px;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+
+    .product img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    /* Titles */
+    h2 { color: var(--blue-primary); margin-top: 0; }
+
+    /* About */
+    .about p { color: var(--gray-muted); }
+
+    /* Forms */
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #e3e3e3;
+      border-radius: 8px;
+    }
+
+    .map {
+      width: 100%;
+      height: 260px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #cbd5e1, #94a3b8);
+      color: var(--gray-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 10px;
+    }
+    @media (max-width:800px){
+      .gallery { grid-template-columns: repeat(2,1fr); }
+    }
+
+   /* Footer fixo */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  padding: 22px 0;
+  background: var(--blue-primary);
+  color: var(--white);
+  z-index: 30;
+}
+
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .small { font-size: 0.9rem; color: var(--white); }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="page-pad nav">
+      <a class="logo" href="#home" onclick="navigate('home')">
+        <div class="mark">KP</div>
+        <div>
+          <div style="font-weight:800">Ki Pão de Queijo</div>
+          <div style="font-size:0.8rem;color:var(--gray-muted)">Pães de queijo & salgados</div>
+        </div>
+      </a>
+
+      <nav>
+        <ul>
+          <li><a href="#home" onclick="navigate('home')">Início</a></li>
+          <li><a href="#menu" onclick="navigate('menu')">Cardápio</a></li>
+          <li><a href="#about" onclick="navigate('about')">Sobre</a></li>
+          <li><a href="#gallery" onclick="navigate('gallery')">Galeria</a></li>
+          <li><a href="#contact" onclick="navigate('contact')">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-pad">
+
+    <!-- HOME -->
+    <section id="home" class="page current">
+      <div class="hero">
+        <div class="left">
+          <h1>Ki Pão de Queijo -> Sabor caseiro na sua rua</h1>
+          <p>Pães de queijo fresquinhos, recheados e salgados assados diariamente.</p>
+
+          <div style="margin-top:18px;">
+            <a class="btn btn-primary" onclick="navigate('menu')">Ver Cardápio</a>
+            <a class="btn btn-ghost" onclick="navigate('contact')" style="margin-left:8px;">Fazer Encomenda</a>
+          </div>
+
+          <div style="margin-top:18px;color:var(--gray-muted)">
+            Horário: Seg–Sex 06:00–21:00 • Sáb 07:30–16:00
+          </div>
+        </div>
+
+        <div class="right" style="width:360px;">
+          <div class="card">
+            <strong style="color:var(--blue-primary)">Promoção do dia</strong>
+            <p style="margin:6px 0;color:var(--gray-muted)">
+            Café expresso + 5 pães de queijo por R$ 9,99
+            </p>
+            <img src=https://hatandapron.wordpress.com/wp-content/uploads/2013/09/dsc_1436.jpg
+            xmlns='http://www.w3.org/2000/svg' width='328' height='200'>
+                <rect width='100%' height='100%' fill='%23FEF9C3'/>
+                <text x='50%' y='50%' font-size='20' fill='%231E3A8A' text-anchor='middle' dominant-baseline='middle'>
+                </text>
+              </xmlns=>
+          </div>
+        </div>
+      </div>
+
+      <!-- Destaques -->
+      <div style="margin-top:22px">
+        <h2>Destaques</h2>
+
+        <div class="card-grid">
+
+          <div class="card product">
+            <img alt="Pão de queijo tradicional"
+              src=https://soubh.uai.com.br/wp-content/uploads/2025/08/yt-069_pao-de-queijo_receita.jpg
+              xmlns='http://www.w3.org/2000/svg' width='400' height='240'>
+                <rect width='100%' height='100%' fill='%23FEF9C3'/>
+                <text x='50%' y='50%' fill='%231E3A8A' font-size='16' text-anchor='middle' dominant-baseline='middle'>
+                </text>
+              </xmlns=>
+            <h3 style="margin:8px 0 4px;color:var(--blue-primary)">Pão de queijo tradicional</h3>
+            <p class="small" style="color:var(--gray-muted)">Unidade • R$ 2,90</p>
+          </div>
+
+          <div class="card product">
+            <img alt="Recheados"
+              src=https://tudodelicious.com/wp-content/uploads/2025/09/Empadinha-Doce-de-Leite-Condensado-1024x1024.jpg
+              xmlns='http://www.w3.org/2000/svg' width='400' height='240'>
+                <rect width='100%' height='100%' fill='%23FEF9C3'/>
+                <text x='50%' y='50%' fill='%231E3A8A' font-size='16' text-anchor='middle' dominant-baseline='middle'>
+                </text>
+              </xmlns=>
+            <h3 style="margin:8px 0 4px;color:var(--blue-primary)">Recheados</h3>
+            <p class="small" style="color:var(--gray-muted)">Queijo, calabresa, doce de leite</p>
+             <p class="small" style="color:var(--gray-muted)">Unidade • R$ 4,50</p>
+          </div>
+
+          <div class="card product">
+            <img alt="Salgados"
+              src=https://saborecia.com.br/wp-content/uploads/2020/08/MG_4517-scaled.jpg
+              xmlns='http://www.w3.org/2000/svg' width='400' height='240'>
+                <rect width='100%' height='100%' fill='%23FEF9C3'/>
+                <text x='50%' y='50%' fill='%231E3A8A' font-size='16' text-anchor='middle' dominant-baseline='middle'>
+                </text>
+              </xmlns=>
+            <h3 style="margin:8px 0 4px;color:var(--blue-primary)">Salgados</h3>
+            <p class="small" style="color:var(--gray-muted)">Pastel, empada, bolinha de queijo, quibe</p>
+            <p class="small" style="color:var(--gray-muted)">Unidade • R$ 5,50</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+   <!-- MENU -->
+    <section id="menu" class="page" style="display:none">
+  <h2>Cardápio</h2>
+
+  <div class="card-grid" style="margin-top:12px">
+
+    <!-- ITEM 1 -->
+    <div class="card product">
+      <img src="https://soubh.uai.com.br/wp-content/uploads/2025/08/yt-069_pao-de-queijo_receita.jpg"
+           alt="Pão de queijo tradicional" />
+      <h3 style="color:var(--blue-primary); margin-top:8px">Pão de queijo tradicional</h3>
+      <p class="small" style="color:var(--gray-muted)">Unidade • R$ 2,90</p>
+    </div>
+
+    <!-- ITEM 2 -->
+    <div class="card product">
+      <img src="https://tudodelicious.com/wp-content/uploads/2025/09/Empadinha-Doce-de-Leite-Condensado-1024x1024.jpg"
+           alt="Pão de queijo recheado" />
+      <h3 style="color:var(--blue-primary); margin-top:8px">Recheados (Doce de leite)</h3>
+      <p class="small" style="color:var(--gray-muted)">Unidade • R$ 3,90</p>
+    </div>
+
+    <!-- ITEM 3 -->
+    <div class="card product">
+      <img src=https://cdn.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=768,fit=scale-down,q=100/cdn-ecommerce/store_01K22ZYH59JEMDX9Z8KH3TBD87/assets/7539c592-0511-4b01-bd0a-aa0163f48f4b.jpg
+           alt="Coxinha pequena" />
+      <h3 style="color:var(--blue-primary); margin-top:8px">Coxinha pequena</h3>
+      <p class="small" style="color:var(--gray-muted)">Unidade • R$ 0,75</p>
+    </div>
+
+    <!-- ITEM 4 -->
+    <div class="card product">
+      <img src=https://salgados.mamacida.com.br/imagens/onde-comprar-salgados-para-festa-corporativa.jpg
+           alt="Caixa com 50 unidades" />
+      <h3 style="color:var(--blue-primary); margin-top:8px">Encomenda — Caixa 50 unidades</h3>
+      <p class="small" style="color:var(--gray-muted)">Unidade • R$ 29,90</p>
+    </div>
+
+  </div>
+
+  <div style="margin-top:18px">
+    <h3 style="color:var(--blue-primary)">Como encomendar</h3>
+    <ol>
+      <li>Entrar em contato por telefone/WhatsApp.</li>
+      <li>Escolher produtos e data de retirada/entrega.</li>
+      <li>Pagamento: retirada em loja ou Pix antecipado.</li>
+    </ol>
+  </div>
+</section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page" style="display:none">
+      <h2>Sobre a Ki Pão de Queijo</h2>
+      <div class="about card" style="padding:18px">
+        <p>
+A <strong>Ki Pão de Queijo</strong> é uma empresa local dedicada a entregar o verdadeiro sabor do pão de queijo
+tradicional. Localizada no coração da comunidade, a loja nasceu com o propósito de oferecer produtos artesanais,
+frescos e preparados diariamente com ingredientes de alta qualidade.
+</p>
+<p>
+Nosso objetivo é proporcionar uma experiência acolhedora, saborosa e inesquecível para cada cliente. Trabalhamos
+para manter a essência mineira no preparo, trazendo aquele cheirinho irresistível que já virou marca registrada da
+Ki Pão de Queijo.
+</p>
+<h3 style="margin-top:20px; color:#FACC15;">Missão</h3>
+<p>
+Oferecer produtos artesanais frescos, mantendo o sabor tradicional, prezando pela qualidade, carinho e atendimento
+acolhedor para toda a comunidade.
+</p>
+<h3 style="margin-top:20px; color:#FACC15;">Visão</h3>
+<p>
+Ser reconhecida como a melhor opção de pão de queijo artesanal da região, expandindo nossa marca sem perder a
+proximidade com nossos clientes.
+</p>
+<h3 style="margin-top:20px; color:#FACC15;">Valores</h3>
+<p>
+• Qualidade acima de tudo<br>
+• Atendimento humanizado<br>
+• Sabor tradicional e autêntico<br>
+• Respeito à comunidade local
+</p>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="page" style="display:none">
+  <h2>Galeria</h2>
+
+  <div class="gallery" style="margin-top:12px">
+
+    <!-- FOTO 1 -->
+    <div class="card">
+      <img style="width:100%;height:500px;object-fit:cover;border-radius:10px"
+        src="Loja1.jpeg" 
+        alt="Pão de queijo Ki Pão de Queijo" />
+    </div>
+
+    <!-- FOTO 2 -->
+    <div class="card">
+      <img style="width:100%;height:500px;object-fit:cover;border-radius:10px"
+        src="Loja 2.jpeg"
+        alt="Salgados variados Ki Pão de Queijo" />
+    </div>
+
+    <!-- FOTO 3 -->
+    <div class="card">
+      <img style="width:100%;height:500px;object-fit:cover;border-radius:10px"
+        src="Loja3.jpeg"
+        alt="Pães de queijo recheados" />
+    </div>
+
+    <!-- FOTO 4 -->
+    <div class="card">
+      <img style="width:100%;height:300px;object-fit:cover;border-radius:10px"
+        src="Loja4.jpeg"
+        alt="Coxinha e salgados" />
+    </div>
+
+    <!-- FOTO 5 -->
+    <div class="card">
+      <img style="width:100%;height:300px;object-fit:cover;border-radius:10px"
+        src="Loja 5.jpeg"
+        alt="Salgados assados" />
+    </div>
+
+    <!-- FOTO 6 -->
+    <div class="card">
+      <img style="width:100%;height:300px;object-fit:cover;border-radius:10px"
+        src="Loja 6.jpeg"
+        alt="Linha de produtos Ki Pão de Queijo" />
+    </div>
+
+  </div>
+</section>
+
+
+    <!-- CONTACT -->
+    <section id="contact" class="page" style="display:none">
+      <h2>Contato & Localização</h2>
+
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+
+        <!-- Form -->
+        <div style="flex:1;min-width:300px">
+          <div class="card contact-form">
+            <p class="small" style="color:var(--gray-muted)">Envie uma mensagem (simulação).</p>
+
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <input id="nome" placeholder="Seu nome">
+              <input id="telefone" placeholder="Telefone / WhatsApp">
+              <textarea id="mensagem" rows="5" placeholder="Mensagem"></textarea>
+
+              <button class="btn btn-primary" onclick="submitForm()">Enviar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dados -->
+        <div style="flex:1;min-width:300px">
+          <div class="card">
+            <strong style="color:var(--blue-primary)">Endereço</strong>
+            <p class="small" style="color:var(--gray-muted)">St. B Sul CSB 7 Loja 13 - Taguatinga Sul, Brasília - DF, 72015-575</p>
+
+            <div style="margin-top:12px">
+              <strong style="color:var(--blue-primary)">Telefone</strong>
+              <p class="small" style="color:var(--gray-muted)">(61) 99427-4233</p>
+            </div>
+
+            <div style="margin-top:12px">
+              <strong style="color:var(--blue-primary)">Mapa</strong>
+              <div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3838.3184977474334!2d-48.05453577106997!3d-15.839849057236595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a330000bdf63f%3A0xfdbaf2621235f875!2sKi%20p%C3%A3o%20de%20Queijo%20Sul!5e0!3m2!1spt-BR!2sbr!4v1764562841145!5m2!1spt-BR!2sbr" width="630" height="260" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="page-pad footer-inner">
+      <div class="small">© 2025 Ki Pão de Queijo</div>
+      <div class="small">Integrante: Ítalo George da Costa Diniz — UCB</div>
+    </div>
+  </footer>
+
+  <script>
+    function navigate(id){
+      document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+      window.scrollTo({ top:0, behavior:'smooth' });
+    }
+    navigate('home');
+
+    function submitForm(){
+      alert("Mensagem enviada (simulação)");
+    }
+  </script>
+
+</body>
+</html>
